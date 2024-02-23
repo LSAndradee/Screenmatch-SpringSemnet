@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: br.com.alura.screenmatch.ScreenmatchApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.210 s <<< FAILURE! -- in br.com.alura.screenmatch.ScreenmatchApplicationTests
-br.com.alura.screenmatch.ScreenmatchApplicationTests.contextLoads -- Time elapsed: 0.013 s <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext for [MergedContextConfiguration@1f67761b testClass = br.com.alura.screenmatch.ScreenmatchApplicationTests, locations = [], classes = [br.com.alura.screenmatch.ScreenmatchApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@302c971f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@6f10d5b6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b695b06, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@4b8d604b, org.springframework.boot.test.context.SpringBootTestAnnotation@c5fe151d], contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.857 s <<< FAILURE! -- in br.com.alura.screenmatch.ScreenmatchApplicationTests
+br.com.alura.screenmatch.ScreenmatchApplicationTests.contextLoads -- Time elapsed: 0.009 s <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext for [MergedContextConfiguration@4667c4c1 testClass = br.com.alura.screenmatch.ScreenmatchApplicationTests, locations = [], classes = [br.com.alura.screenmatch.ScreenmatchApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@302c971f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@6f10d5b6, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@6b695b06, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@4b8d604b, org.springframework.boot.test.context.SpringBootTestAnnotation@c5fe151d], contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
 	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:142)
@@ -22,10 +22,8 @@ java.lang.IllegalStateException: Failed to load ApplicationContext for [MergedCo
 	at java.base/java.util.Optional.orElseGet(Optional.java:364)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: java.lang.RuntimeException: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "Year" (class br.com.alura.screenmatch.model.DadosSerie), not marked as ignorable (3 known properties: "totalTemporadas", "titulo", "avaliacao"])
- at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1036] (through reference chain: br.com.alura.screenmatch.model.DadosSerie["Year"])
-	at br.com.alura.screenmatch.service.ConverteDados.obterDados(ConverteDados.java:16)
-	at br.com.alura.screenmatch.ScreenmatchApplication.run(ScreenmatchApplication.java:27)
+Caused by: java.lang.NullPointerException: Cannot invoke "java.lang.Integer.intValue()" because the return value of "br.com.alura.screenmatch.model.DadosSerie.totalTemporadas()" is null
+	at br.com.alura.screenmatch.ScreenmatchApplication.run(ScreenmatchApplication.java:39)
 	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:790)
 	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:83)
 	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
@@ -53,21 +51,4 @@ Caused by: java.lang.RuntimeException: com.fasterxml.jackson.databind.exc.Unreco
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
 	... 17 more
-Caused by: com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException: Unrecognized field "Year" (class br.com.alura.screenmatch.model.DadosSerie), not marked as ignorable (3 known properties: "totalTemporadas", "titulo", "avaliacao"])
- at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); line: 1, column: 1036] (through reference chain: br.com.alura.screenmatch.model.DadosSerie["Year"])
-	at com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException.from(UnrecognizedPropertyException.java:61)
-	at com.fasterxml.jackson.databind.DeserializationContext.handleUnknownProperty(DeserializationContext.java:1153)
-	at com.fasterxml.jackson.databind.deser.std.StdDeserializer.handleUnknownProperty(StdDeserializer.java:2224)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperty(BeanDeserializerBase.java:1793)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.handleUnknownProperties(BeanDeserializerBase.java:1743)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:546)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1493)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:348)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185)
-	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:342)
-	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4899)
-	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3846)
-	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3814)
-	at br.com.alura.screenmatch.service.ConverteDados.obterDados(ConverteDados.java:14)
-	... 44 more
 
